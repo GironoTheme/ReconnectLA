@@ -2,6 +2,7 @@ import os
 from time import sleep
 from ahk import AHK
 from check import find_network_problem
+from check_for_death import is_dead
 
 
 def find_auto_hot_key():
@@ -31,6 +32,9 @@ class GoToWorld:
             self._click_to_ok()
             self._click_to_my_characters()
             self._click_to_connect()
+
+            is_dead()
+
             self._click_on_auto_hunt()
             self._click_to_energy_saving()
             self._click_on_battery()
