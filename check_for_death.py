@@ -31,7 +31,7 @@ def is_dead():
 
     take_screenshot(f'Images\\is_dead.png', area_of_screenshot=(730, 825, 1125, 920))
 
-    dead_button_1 = matching(f'Images\\imgs\\is_dead.png',
+    dead_button_1 = matching(f'Images\\is_dead.png',
                              f'Images\\dead.png', need_for_taking_screenshot=False)
 
     dead_button_2 = matching(f'Images\\is_dead.png',
@@ -63,7 +63,7 @@ def revive():
     take_screenshot('amount_of_free_revives.png', area_of_screenshot=(385, 600, 420, 640))
 
     try:
-        amount_of_free_revives = int(pytesseract.image_to_string('amount_of_free_revives.png',
+        amount_of_free_revives = int(pytesseract.image_to_string('Images\\amount_of_free_revives.png',
                                      config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789'))
 
     except:
@@ -72,7 +72,7 @@ def revive():
         __send_to_last_location()
         return
 
-    while matching('is_items_lose_via_death.png', 'adena.png', need_for_taking_screenshot=True,
+    while matching('Images\\is_items_lose_via_death.png', 'Images\\adena.png', need_for_taking_screenshot=True,
                    area_of_screenshot=(430, 600, 480, 650)) is False:
         move_and_click(x=500, y=620)
 
@@ -95,11 +95,12 @@ def revive():
     move_and_click(x=1050, y=700)
     move_and_click(x=400, y=190)
 
-    while matching('is_items_lose_via_death.png',
-                   'adena.png',
+    while matching('Images\\is_items_lose_via_death.png',
+                   'Images\\adena.png',
                    need_for_taking_screenshot=True,
                    area_of_screenshot=(430, 600, 480, 650)) is False:
-        ahk.mouse_move('move', x=500, y=620)
+
+        move_and_click(x=500, y=620)
 
     for i in range(4):
         move_and_click(x=500, y=250 + (i * 100))
