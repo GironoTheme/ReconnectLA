@@ -3,16 +3,21 @@ from ahk import AHK
 from time import sleep
 from check import matching, take_screenshot
 import pytesseract
-
-ahk = AHK()
-
-
-def find_path_to_folder(folder):
-    for root_path in Path(f'С:\\').glob(f'**\\{folder}\\'):
-        return root_path
+import os
 
 
-path_to_tesseract = f"{find_path_to_folder('tesseract')}\\tesseract.exe"
+def find_file(file_name):
+    drives = [f"{chr(drive)}:\\" for drive in range(ord('A'), ord('Z') + 1) if os.path.exists(f"{chr(drive)}:\\")]
+    for drive in drives:
+        for root_path in Path(drive).rglob(file_name):
+            return root_path
+    return None
+
+
+ahk = AHK(executable_path=str(find_file("AutoHotkey.exe")))
+
+
+path_to_tesseract = find_file("tesseract.exe")
 pytesseract.pytesseract.tesseract_cmd = path_to_tesseract
 
 
