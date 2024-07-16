@@ -60,7 +60,7 @@ def revive():
     sleep(5)
 
     move_and_click(x=1250, y=80)
-    take_screenshot('amount_of_free_revives.png', area_of_screenshot=(385, 600, 420, 640))
+    take_screenshot('Images\\amount_of_free_revives.png', area_of_screenshot=(385, 600, 420, 640))
 
     try:
         amount_of_free_revives = int(pytesseract.image_to_string('Images\\amount_of_free_revives.png',
