@@ -1,7 +1,7 @@
 import os
 from time import sleep
 from ahk import AHK
-from check import find_network_problem
+from check import find_network_problem, check_square_in_center
 from check_for_death import is_dead
 
 
@@ -28,6 +28,7 @@ def move_and_click(x, y):
 class GoToWorld:
     def manipulations_in_window(self, hwnd):
         sleep(4)
+        self._center_square()
         if find_network_problem() is True:
             self._click_to_ok()
             self._click_to_my_characters()
@@ -38,6 +39,11 @@ class GoToWorld:
             self._click_on_auto_hunt()
             self._click_to_energy_saving()
             self._click_on_battery()
+
+    def _center_square(self):
+        if check_square_in_center() is True:
+            move_and_click(985, 70)
+            ahk.click()
 
     def _click_to_ok(self):
         move_and_click(940, 710)

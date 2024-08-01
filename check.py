@@ -52,3 +52,13 @@ def find_network_problem():
         return True
 
     return False
+
+
+def check_square_in_center():
+    take_screenshot('Images\\square_in_center.png', (1680, 50, 1720, 90))
+
+    if matching('Images\\square_in_center_original.png', 'Images\\square_in_center.png') is True:
+        return True
+
+    return False
+
